@@ -3,5 +3,5 @@
     <string name="ADMOB_ADS_UNIT_ID">ca-app-pub-2860820106515807/7978110839</string>
     <string name="ad_attribution">Ad</string>
     <string name="agora_app_id">"0451267659e943c1af55a302d39f7706"</string>
-    <string name="agora_access_token">"0060451267659e943c1af55a302d39f7706IADxuSWnqEG4obtpOia1LofmwLgDX3bK8Kj+Yfm7qkILxQx+f9gAAAAAEADWh9DjmN64YAEAAQCW3rhg"</string>
-</resources>
+    <string name="agora_access_token">"0060451267659e943c1af55a302d39f7706IAAKEKeHtm3WRCU6AzqV2c4vkPA/gOKrBStey4NaZdMFw+IVUyEAAAAAEADWh9Djz+u4YAEAAQDN67hg"</string>
+   </resources>

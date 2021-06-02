@@ -22,6 +22,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,7 +40,7 @@ import io.agora.rtc.video.VideoEncoderConfiguration;
 
 public class VideoChatViewActivity extends AppCompatActivity {
     private static final String TAG = VideoChatViewActivity.class.getSimpleName();
-
+    static String tok;
     private static final int PERMISSION_REQ_ID = 22;
     private static final String[] REQUESTED_PERMISSIONS = {
             Manifest.permission.RECORD_AUDIO,
@@ -44,7 +51,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
     boolean ass= false;
     private boolean mCallEnd;
     private boolean mMuted;
-
+    DatabaseReference ref;
     private FrameLayout mLocalContainer;
     private RelativeLayout mRemoteContainer;
     private VideoCanvas mLocalVideo;
@@ -66,7 +73,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
                         public void run() {
                             if(!ass)
                             {
-                                showLongToast("Try again after some time");
+                              showLongToast("Try again after some time");
                               endVideoCall();
                             }
                         }
@@ -128,6 +135,18 @@ public class VideoChatViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_chat_view);
+        ref = FirebaseDatabase.getInstance().getReference("Member").child("1");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tok = Objects.requireNonNull(dataSnapshot.child("name").getValue()).toString();
+                //showLongToast(tok);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
         initUI();
         if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
                 checkSelfPermission(REQUESTED_PERMISSIONS[1], PERMISSION_REQ_ID))
@@ -222,12 +241,11 @@ public class VideoChatViewActivity extends AppCompatActivity {
         finish();
     }
     private void joinChannel() {
-
-        String token = getString(R.string.agora_access_token);
-        if (TextUtils.isEmpty(token)) {
-            token = null;
+        //showLongToast(tok);
+        if (TextUtils.isEmpty(tok)) {
+            tok = null;
         }
-        mRtcEngine.joinChannel(token, "test", "Extra Optional Data", 0);
+        mRtcEngine.joinChannel(tok, "test", "Extra Optional Data", 0);
     }
 
     @Override
@@ -280,10 +298,10 @@ public class VideoChatViewActivity extends AppCompatActivity {
         mRemoteVideo = null;
         leaveChannel();
 
-        Intent s= new Intent(VideoChatViewActivity.this,MainActivity.class);
+        /*Intent s= new Intent(VideoChatViewActivity.this,MainActivity.class);
         s.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(s);
-        finish();
+        startActivity(s);*/
+        endVideoCall();
     }
 
     private void showButtons(boolean show) {
