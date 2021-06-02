@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RandomCaller</string>
+    <string name="app_name">WeConnect</string>
     <string name="ADMOB_ADS_UNIT_ID">ca-app-pub-2860820106515807/7978110839</string>
     <string name="ad_attribution">Ad</string>
     <string name="agora_app_id">"0451267659e943c1af55a302d39f7706"</string>

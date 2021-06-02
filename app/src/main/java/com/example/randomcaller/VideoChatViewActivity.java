@@ -277,7 +277,9 @@ public class VideoChatViewActivity extends AppCompatActivity {
         mRemoteVideo = null;
         leaveChannel();
         Intent s= new Intent(VideoChatViewActivity.this,MainActivity.class);
+        s.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(s);
+        finish();
     }
 
     private void showButtons(boolean show) {
