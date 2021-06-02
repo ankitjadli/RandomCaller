@@ -66,7 +66,8 @@ public class VideoChatViewActivity extends AppCompatActivity {
                         public void run() {
                             if(!ass)
                             {
-                               endVideoCall();
+                                showLongToast("Try again after some time");
+                              endVideoCall();
                             }
                         }
                     },15000);
@@ -194,7 +195,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
 
     private void initializeEngine() {
         try {
-            mRtcEngine = RtcEngine.create(getBaseContext(), getString(R.string.agora_app_id), mRtcEventHandler);
+            mRtcEngine = RtcEngine.create(getBaseContext(),"0451267659e943c1af55a302d39f7706", mRtcEventHandler);
         } catch (Exception e) {
             Log.e(TAG, Log.getStackTraceString(e));
         }
