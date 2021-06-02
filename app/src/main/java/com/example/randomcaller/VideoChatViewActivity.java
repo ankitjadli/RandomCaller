@@ -127,8 +127,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
             removeFromParent(mRemoteVideo);
             mRemoteVideo = null;
         }
-        Intent s= new Intent(VideoChatViewActivity.this,MainActivity.class);
-        startActivity(s);
+        endVideoCall();
     }
 
     @Override
