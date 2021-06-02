@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RandomCaller</string>
+    <string name="ADMOB_ADS_UNIT_ID">ca-app-pub-2860820106515807/7978110839</string>
+    <string name="ad_attribution">Ad</string>
+    <string name="agora_app_id">"0451267659e943c1af55a302d39f7706"</string>
+    <string name="agora_access_token">"0060451267659e943c1af55a302d39f7706IAAmY30JwW2o6HRMFjSAk"+0wGcRsu82S6TzGt6GMoi4bSwx+f9gAAAAAEAAAQmFyPIm3YAEAAQA6ibdg</string>
+</resources>
