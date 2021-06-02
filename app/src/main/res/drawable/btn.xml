@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:aapt="http://schemas.android.com/aapt"
     android:shape="rectangle">
     <corners android:radius="50dp"/>
-    <gradient android:startColor="#2196F3" android:endColor="#CDDC39" android:angle="45" android:type="linear"
-        android:centerX="35%" android:centerColor="#E91E63"/>
+    <gradient android:startColor="#4B92FE" android:endColor="#4B92FE" android:angle="45" android:type="linear"
+        android:centerX="35%" android:centerColor="#4B92FE"/>
     <padding android:left="0dp" android:top="0dp" android:right="0dp" android:bottom="0dp"/>
     <size android:height="50dp" android:width="340dp"/>
 </shape>

@@ -5,6 +5,8 @@
     <color name="localBackground">#72CAFF</color>
     <color name="button">#72CAFF</color>
     <color name="remoteBackground">#87AFC7</color>
+    <color name="mainactivityBackground">#72CAFF</color>
+    <color name="AdBackground">#3EB7FF</color>
     <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>

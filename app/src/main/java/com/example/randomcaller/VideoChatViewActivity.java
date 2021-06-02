@@ -67,13 +67,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
                         public void run() {
                             if(!ass)
                             {
-                                leaveChannel();
-                             /*   onDestroy();
-                                 /*  endCall();
-                                   mCallEnd = true;
-                                   mCallBtn.setImageResource(R.drawable.btn_startcall);*/
-                                Intent s= new Intent(VideoChatViewActivity.this,MainActivity.class);
-                                startActivity(s);
+                               endCall();
                             }
                         }
                     },15000);
@@ -97,7 +91,8 @@ public class VideoChatViewActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    ass=false;
+                    //ass=false;
+                    endCall();
                     onRemoteUserLeft(uid);
                 }
             });
@@ -263,15 +258,10 @@ public class VideoChatViewActivity extends AppCompatActivity {
         if (mCallEnd) {
             startCall();
             mCallEnd = false;
-            mCallBtn.setImageResource(R.drawable.btn_endcall_normal);
         } else {
             endCall();
             mCallEnd = true;
-            mCallBtn.setImageResource(R.drawable.btn_startcall_normal);
-            Intent s= new Intent(VideoChatViewActivity.this,MainActivity.class);
-            startActivity(s);
         }
-
         showButtons(!mCallEnd);
     }
 
@@ -286,6 +276,8 @@ public class VideoChatViewActivity extends AppCompatActivity {
         removeFromParent(mRemoteVideo);
         mRemoteVideo = null;
         leaveChannel();
+        Intent s= new Intent(VideoChatViewActivity.this,MainActivity.class);
+        startActivity(s);
     }
 
     private void showButtons(boolean show) {

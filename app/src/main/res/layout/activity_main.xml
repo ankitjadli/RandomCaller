@@ -3,9 +3,27 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/mainactivityBackground"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/newlogo"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:id="@+id/ourlogo"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/byankit"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/ourlogo"
+        android:id="@+id/ankit"/>
 
     <LinearLayout
         android:layout_alignParentBottom="true"
@@ -23,10 +41,9 @@
         android:layout_width="150dp"
         android:background="@drawable/rcall"
         android:layout_height="50dp"
-        android:layout_marginBottom="80dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="80dp"
-
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/ankit"
         android:id="@+id/randomcall"
         />
 
