@@ -60,14 +60,13 @@ public class VideoChatViewActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    // mLogView.logI("Join channel success, uid: " + (uid & 0xFFFFFFFFL));
                     times = new Timer();
                     times.schedule(new TimerTask() {
                         @Override
                         public void run() {
                             if(!ass)
                             {
-                               endCall();
+                               endVideoCall();
                             }
                         }
                     },15000);
@@ -91,7 +90,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    //ass=false;
+                    ass=true;
                     endCall();
                     onRemoteUserLeft(uid);
                 }
@@ -218,7 +217,9 @@ public class VideoChatViewActivity extends AppCompatActivity {
         mLocalVideo = new VideoCanvas(view, VideoCanvas.RENDER_MODE_HIDDEN, 0);
         mRtcEngine.setupLocalVideo(mLocalVideo);
     }
-
+    private void endVideoCall() {
+        finish();
+    }
     private void joinChannel() {
 
         String token = getString(R.string.agora_access_token);
@@ -260,6 +261,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
             mCallEnd = false;
         } else {
             endCall();
+            ass=true;
             mCallEnd = true;
         }
         showButtons(!mCallEnd);
@@ -276,6 +278,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
         removeFromParent(mRemoteVideo);
         mRemoteVideo = null;
         leaveChannel();
+
         Intent s= new Intent(VideoChatViewActivity.this,MainActivity.class);
         s.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(s);
