@@ -134,17 +134,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_chat_view);
-        ref = FirebaseDatabase.getInstance().getReference("Member").child("1");
-        ref.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                tok = Objects.requireNonNull(dataSnapshot.child("name").getValue()).toString();
-                //showLongToast(tok);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
+
 
         initUI();
         if (checkSelfPermission(REQUESTED_PERMISSIONS[0], PERMISSION_REQ_ID) &&
@@ -205,10 +195,21 @@ public class VideoChatViewActivity extends AppCompatActivity {
     }
 
     private void initEngineAndJoinChannel() {
-        initializeEngine();
-        setupVideoConfig();
-        setupLocalVideo();
-        joinChannel();
+        ref = FirebaseDatabase.getInstance().getReference("Member").child("1");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                tok = Objects.requireNonNull(dataSnapshot.child("name").getValue()).toString();
+                initializeEngine();
+                setupVideoConfig();
+                setupLocalVideo();
+                joinChannel(tok);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
     }
 
     private void initializeEngine() {
@@ -239,12 +240,13 @@ public class VideoChatViewActivity extends AppCompatActivity {
     private void endVideoCall() {
         finish();
     }
-    private void joinChannel() {
+
+    private void joinChannel(String ass) {
         //showLongToast(tok);
-        if (TextUtils.isEmpty(tok)) {
-            tok = null;
+        if (TextUtils.isEmpty(ass)) {
+            ass = null;
         }
-        mRtcEngine.joinChannel(tok, "test", "Extra Optional Data", 0);
+        mRtcEngine.joinChannel(ass, "test", "Extra Optional Data", 0);
     }
 
     @Override
@@ -275,7 +277,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
 
     public void onCallClicked(View view) {
         if (mCallEnd) {
-            startCall();
+            //startCall();
             mCallEnd = false;
         } else {
             endCall();
@@ -287,7 +289,7 @@ public class VideoChatViewActivity extends AppCompatActivity {
 
     private void startCall() {
         setupLocalVideo();
-        joinChannel();
+      //  joinChannel();
     }
 
     private void endCall() {
